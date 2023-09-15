@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ToDoApp.ViewModels;
 
 namespace ToDoApp
 {
@@ -20,14 +21,14 @@ namespace ToDoApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow() 
         {
             InitializeComponent();
+            var tasks = new TaskListViewModel();
+            tasks.Tasks.Add(new TaskViewModel() { Name = "Task 1", Complete = false });
+            tasks.Tasks.Add(new TaskViewModel() { Name = "Task 2", Complete = true });
+            this.DataContext = tasks;
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
     }
 }

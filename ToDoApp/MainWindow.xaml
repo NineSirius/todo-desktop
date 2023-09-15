@@ -5,8 +5,48 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ToDoApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="ToDo App" Height="350" Width="525">
     <Grid>
-        <TextBlock HorizontalAlignment="Center" Margin="0,201,0,0" TextWrapping="Wrap" Text="My First Appp" VerticalAlignment="Top"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ItemsControl Grid.Row="1" x:Name="list" ItemsSource="{Binding Tasks}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Vertical"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <CheckBox IsChecked="{Binding Checked}"/>
+                        <TextBlock Text="{Binding Name}" Grid.Column="2"/>
+                    </Grid>
+                    
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+     
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="*" MinWidth="80"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox Text="{Binding TaskName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button Content="Create Task" Grid.Column="1" Command="{Binding CreateTaskCommand}" CommandParameter="{Binding}"/>
+            
+        </Grid>
+ 
+
     </Grid>
 </Window>

@@ -1,14 +1,41 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace ToDoApp.ViewModels
 {
-    public class TaskViewModel
+    [Serializable]
+    public class TaskViewModel : INotifyPropertyChanged
     {
-        public string Name { get; set; }
-        public bool Complete { get; set; }
+        private string name;
+        private bool complete;
+
+        public string Name
+        {
+            get { return name; }
+            set
+            {
+                if (name != value)
+                {
+                    name = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Name)));
+                }
+            }
+        }
+
+        public bool Complete
+        {
+            get { return complete; }
+            set
+            {
+                if (complete != value)
+                {
+                    complete = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Complete)));
+                }
+            }
+        }
+
+        [field: NonSerialized]
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

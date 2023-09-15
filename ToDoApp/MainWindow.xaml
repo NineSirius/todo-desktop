@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:local="clr-namespace:ToDoApp"
         mc:Ignorable="d"
         Title="ToDo App" Height="350" Width="525">
@@ -18,35 +19,38 @@
                     <VirtualizingStackPanel Orientation="Vertical"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
-            
+
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
+                    <Grid Margin="10, 5, 10, 5">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="10"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <CheckBox IsChecked="{Binding Checked}"/>
-                        <TextBlock Text="{Binding Name}" Grid.Column="2"/>
+                        <TextBlock Text="{Binding Name}" Grid.Column="2" VerticalAlignment="Center" FontSize="15"/>
                     </Grid>
-                    
+
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
+          
         </ItemsControl>
-     
+        
 
-        <Grid Grid.Row="0">
+
+        <Grid Grid.Row="0" Margin="5">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="4*"/>
-                <ColumnDefinition Width="*" MinWidth="80"/>
+                <ColumnDefinition Width="8*"/>
+                <ColumnDefinition Width="76*"/>
+                <ColumnDefinition Width="21*" MinWidth="80"/>
             </Grid.ColumnDefinitions>
 
-            <TextBox Text="{Binding TaskName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <Button Content="Create Task" Grid.Column="1" Command="{Binding CreateTaskCommand}" CommandParameter="{Binding}"/>
-            
+            <ui:TextBox Text="{Binding TaskName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PlaceholderText="Enter task here" Grid.ColumnSpan="2"/>
+            <ui:Button Content="Create Task" Grid.Column="2" Command="{Binding CreateTaskCommand}" CommandParameter="{Binding}" Width="Auto" Margin="5,0,0,0"/>
+
         </Grid>
- 
+
 
     </Grid>
 </Window>

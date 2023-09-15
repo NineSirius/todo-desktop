@@ -6,51 +6,71 @@
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:local="clr-namespace:ToDoApp"
         mc:Ignorable="d"
-        Title="ToDo App" Height="350" Width="525">
+        Title="ToDo List" Height="350" Width="525">
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="30" CornerRadius="0" GlassFrameThickness="0"/>
+    </WindowChrome.WindowChrome>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <ItemsControl Grid.Row="1" x:Name="list" ItemsSource="{Binding Tasks}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <VirtualizingStackPanel Orientation="Vertical"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Grid Margin="10, 5, 10, 5">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="10"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <CheckBox IsChecked="{Binding Checked}"/>
-                        <TextBlock Text="{Binding Name}" Grid.Column="2" VerticalAlignment="Center" FontSize="15"/>
-                    </Grid>
-
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-          
-        </ItemsControl>
+        <Border Background="#3d3d45" Height="30" Grid.Row="0" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="ToDo App" Foreground="White" VerticalAlignment="Center" Margin="10,0"/>
+                <Button Name="MinimizeButton" Grid.Column="1" Content="&#xE921;" FontFamily="Segoe MDL2 Assets" FontSize="16" Foreground="White" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center"  Click="MinimizedButton_Click"/>
+                <Button Name="CloseButton" Grid.Column="2" Content="&#xE8BB;" FontFamily="Segoe MDL2 Assets" FontSize="16" Foreground="White" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center" Click="CloseButton_Click" />
+            </Grid>
+        </Border>
+            
+         
         
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
+            <ScrollViewer Grid.Row="1" Name="taskscroll">
+                <ItemsControl x:Name="list" ItemsSource="{Binding Tasks}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel Orientation="Vertical"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
 
-        <Grid Grid.Row="0" Margin="5">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="8*"/>
-                <ColumnDefinition Width="76*"/>
-                <ColumnDefinition Width="21*" MinWidth="80"/>
-            </Grid.ColumnDefinitions>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="10, 5, 10, 5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="10"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <CheckBox IsChecked="{Binding Checked}"/>
+                                <TextBlock Text="{Binding Name}" Grid.Column="2" VerticalAlignment="Center" FontSize="15"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
 
-            <ui:TextBox Text="{Binding TaskName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PlaceholderText="Enter task here" Grid.ColumnSpan="2"/>
-            <ui:Button Content="Create Task" Grid.Column="2" Command="{Binding CreateTaskCommand}" CommandParameter="{Binding}" Width="Auto" Margin="5,0,0,0"/>
+            <Grid Grid.Row="0" Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition Width="76*"/>
+                    <ColumnDefinition Width="21*" MinWidth="80"/>
+                </Grid.ColumnDefinitions>
 
+                <ui:TextBox Text="{Binding TaskName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PlaceholderText="Enter task here" Grid.ColumnSpan="2"/>
+                <ui:Button Content="Create Task" Grid.Column="2" Command="{Binding CreateTaskCommand}" CommandParameter="{Binding}" Width="Auto" Margin="5,0,0,0" />
+            </Grid>
         </Grid>
-
-
     </Grid>
 </Window>

@@ -6,30 +6,30 @@
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:local="clr-namespace:ToDoApp"
         mc:Ignorable="d"
-        Title="ToDo List" Height="350" Width="525">
-
+        WindowStyle="None"
+        Title="ToDo List" Height="350" Width="525"
+        Icon="C:\Users\NineSirius\source\repos\ToDoApp\ToDoApp\todo_icon.png">
     <Grid>
-        <!-- 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
+        
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="ToDo App" Foreground="White" VerticalAlignment="Center" Margin="10,0,10,0" FontSize="16" Grid.ColumnSpan="2"/>
-            <Button Name="MinimizeButton" Grid.Column="1" Content="&#xE921;" FontFamily="Segoe MDL2 Assets" FontSize="16" Foreground="White" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Center" Click="MinimizedButton_Click"/>
-            <Button Name="CloseButton" Grid.Column="2" Content="&#xE8BB;" FontFamily="Segoe MDL2 Assets" FontSize="16" Foreground="White" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Center" Click="CloseButton_Click" />
+            <Border Background="#3d3d45" Height="30" BorderBrush="Transparent" VerticalAlignment="Top" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock Text="ToDo App" Foreground="White" VerticalAlignment="Center" Margin="10,0" FontSize="15"/>
+                    <Button Name="MinimizeButton" Grid.Column="1" Content="&#xE921;" FontFamily="Segoe MDL2 Assets" FontSize="13" Foreground="White" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Right" VerticalAlignment="Center" Click="MinimizedButton_Click"/>
+                    <Button Name="CloseButton" Grid.Column="2" Content="&#xE8BB;" FontFamily="Segoe MDL2 Assets" FontSize="13" Foreground="White" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Right" VerticalAlignment="Center" Click="CloseButton_Click" />
+                </Grid>
+            </Border>
         </Grid>
-        -->
-
-
-
-
 
         <Grid Grid.Row="2">
             <Grid.RowDefinitions>

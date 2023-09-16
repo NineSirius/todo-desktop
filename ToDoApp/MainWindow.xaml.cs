@@ -6,6 +6,7 @@ using System.Windows;
 using ToDoApp.ViewModels;
 using System.Windows.Media;
 using System.Windows.Input;
+using Wpf.Ui.Controls;
 
 namespace ToDoApp
 {
@@ -41,14 +42,17 @@ namespace ToDoApp
         private void MinimizedButton_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
-        }
+        }       
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
 
+        private void TitleBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
 
-    
     }
 }

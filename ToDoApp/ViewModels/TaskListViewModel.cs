@@ -26,6 +26,7 @@ namespace ToDoApp.ViewModels
         }
         public string TaskName { get; set; }
         public ICommand CreateTaskCommand { get { return new CreateTaskCommand { }; } }
+        public ICommand DeleteTaskCommand { get { return new DeleteTaskCommand(this); } }
 
         public event PropertyChangedEventHandler? PropertyChanged;
 

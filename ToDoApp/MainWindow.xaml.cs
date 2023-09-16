@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using ToDoApp.ViewModels;
+using System.Windows.Media;
+using System.Windows.Input;
 
 namespace ToDoApp
 {
@@ -34,6 +36,8 @@ namespace ToDoApp
             DataHelper.SaveTasks(new List<TaskViewModel>(taskList.Tasks), "tasks.json");
         }
 
+    
+
         private void MinimizedButton_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
@@ -43,5 +47,8 @@ namespace ToDoApp
         {
             Close();
         }
+
+
+    
     }
 }

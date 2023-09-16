@@ -1,9 +1,7 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace ToDoApp.ViewModels
 {
-    [Serializable]
     public class TaskViewModel : INotifyPropertyChanged
     {
         private string name;
@@ -17,7 +15,7 @@ namespace ToDoApp.ViewModels
                 if (name != value)
                 {
                     name = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Name)));
+                    OnPropertyChanged(nameof(Name));
                 }
             }
         }
@@ -30,12 +28,16 @@ namespace ToDoApp.ViewModels
                 if (complete != value)
                 {
                     complete = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Complete)));
+                    OnPropertyChanged(nameof(Complete));
                 }
             }
         }
 
-        [field: NonSerialized]
         public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

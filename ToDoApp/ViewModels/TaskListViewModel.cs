@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using ToDoApp.Command;
 
@@ -14,25 +9,40 @@ namespace ToDoApp.ViewModels
     {
         private ObservableCollection<TaskViewModel> tasks = new ObservableCollection<TaskViewModel>();
 
-        public ObservableCollection<TaskViewModel> Tasks { 
-            get { return tasks; } 
-            set { 
+        public ObservableCollection<TaskViewModel> Tasks
+        {
+            get { return tasks; }
+            set
+            {
                 if (tasks != value)
                 {
                     tasks = value;
-                    NotifyProperyChanged(nameof(Tasks)); }
+                    NotifyPropertyChanged(nameof(Tasks));
                 }
-            
+            }
         }
+
         public string TaskName { get; set; }
-        public ICommand CreateTaskCommand { get { return new CreateTaskCommand { }; } }
-        public ICommand DeleteTaskCommand { get { return new DeleteTaskCommand(this); } }
 
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        private void NotifyProperyChanged(String name)
+        public ICommand CreateTaskCommand
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            get { return new CreateTaskCommand(this); }
+        }
+
+        public ICommand DeleteTaskCommand
+        {
+            get { return new DeleteTaskCommand(this); }
+        }
+
+        public TaskListViewModel()
+        {
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NotifyPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
